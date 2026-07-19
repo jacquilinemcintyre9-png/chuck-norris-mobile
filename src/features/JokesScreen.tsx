@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useChuckCategories } from '../hooks/useChuckCategories';
 import { useChuckRandomJoke } from '../hooks/useChuckRandomJoke';
 import { JokeCard } from '../components/Jokes/JokeCard';
-import { CategoryList } from '../components/Jokes/CategoryList';
 import { Loader } from '../components/Common/Loader';
 import { ErrorMessage } from '../components/Common/ErrorMessage';
-import { ChuckCategory } from '../api/chuckApi';
 import { StatusBar } from '../components/Layout/StatusBar';
 import { HeroHeader } from '../components/Layout/HeroHeader';
 import { ChuckAvatar } from '../components/Jokes/ChuckAvatar';
 import { PrimaryActionBar } from '../components/Actions/PrimaryActionBar';
 import { BottomNav } from '../components/Layout/BottomNav';
+import { ChuckJoke } from '../api/chuckApi';
 
 type TabKey = 'jokes' | 'categories' | 'favorites';
 
 export const JokesScreen: React.FC = () => {
-  const { categories, loading: catLoading, error: catError } =
-    useChuckCategories();
   const {
     joke,
     loading: jokeLoading,
@@ -24,34 +20,88 @@ export const JokesScreen: React.FC = () => {
     fetchJoke
   } = useChuckRandomJoke();
 
-  const [activeCategory, setActiveCategory] = useState<ChuckCategory | null>(
-    null
-  );
   const [activeTab, setActiveTab] = useState<TabKey>('jokes');
+  const [favorites, setFavorites] = useState<ChuckJoke[]>([]);
 
   useEffect(() => {
     fetchJoke();
+
+    const stored = localStorage.getItem('chuck-favorites');
+    if (stored) {
+      try {
+        setFavorites(JSON.parse(stored));
+      } catch {
+        setFavorites([]);
+      }
+    }
   }, [fetchJoke]);
 
-  const handleNewJoke = () => {
-    fetchJoke(activeCategory ?? undefined);
+  const persistFavorites = (next: ChuckJoke[]) => {
+    setFavorites(next);
+    localStorage.setItem('chuck-favorites', JSON.stringify(next));
   };
 
-  const handleSelectCategory = (category: ChuckCategory) => {
-    setActiveCategory(category);
-    fetchJoke(category);
-    setActiveTab('categories');
+  const handleNewJoke = () => {
+    fetchJoke();
   };
+
+  const handleFavorite = () => {
+    if (!joke) return;
+
+    const exists = favorites.some((f) => f.id === joke.id);
+    const next = exists
+      ? favorites.filter((f) => f.id !== joke.id)
+      : [...favorites, joke];
+
+    persistFavorites(next);
+  };
+
+  const handleCopy = async () => {
+    if (!joke) return;
+    await navigator.clipboard.writeText(joke.value);
+  };
+
+  const handleShare = async () => {
+    if (!joke) return;
+
+    if (navigator.share) {
+      await navigator.share({
+        title: 'Шутка про Чака Норриса',
+        text: joke.value
+      });
+    } else {
+      await navigator.clipboard.writeText(joke.value);
+    }
+  };
+
+  const handleSpeak = () => {
+    if (!joke) return;
+
+    const utter = new SpeechSynthesisUtterance(joke.value);
+    utter.lang = 'ru-RU';
+    utter.rate = 1.0;
+    utter.pitch = 1.0;
+
+    const voices = speechSynthesis.getVoices();
+    const russianVoice = voices.find(v => v.lang === 'ru-RU');
+    if (russianVoice) utter.voice = russianVoice;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+  };
+
+  const isFavorite = joke ? favorites.some((f) => f.id === joke.id) : false;
 
   return (
     <div
       style={{
         minHeight: '100vh',
-        background: 'radial-gradient(circle at top, #1f2933 0, #000000 55%)',
+        background: 'linear-gradient(180deg, #050608 0%, #121212 100%)',
         color: '#ffffff'
       }}
     >
       <StatusBar />
+
       <main
         style={{
           padding: 12,
@@ -63,21 +113,20 @@ export const JokesScreen: React.FC = () => {
         <HeroHeader />
         <ChuckAvatar />
 
-        {catLoading && <Loader text="Загружаем категории..." />}
-        {catError && <ErrorMessage message={catError} />}
-
-        {categories.length > 0 && (
-          <CategoryList
-            categories={categories}
-            activeCategory={activeCategory}
-            onSelectCategory={handleSelectCategory}
-          />
-        )}
-
         {jokeError && <ErrorMessage message={jokeError} />}
+        {jokeLoading && <Loader text="Загружаем шутку..." />}
+
         {joke && <JokeCard joke={joke} />}
 
-        <PrimaryActionBar loading={jokeLoading} onNewJoke={handleNewJoke} />
+        <PrimaryActionBar
+          loading={jokeLoading}
+          onNewJoke={handleNewJoke}
+          onFavorite={handleFavorite}
+          onShare={handleShare}
+          onSpeak={handleSpeak}
+          onCopy={handleCopy}
+          isFavorite={isFavorite}
+        />
 
         <BottomNav active={activeTab} onChange={setActiveTab} />
       </main>
