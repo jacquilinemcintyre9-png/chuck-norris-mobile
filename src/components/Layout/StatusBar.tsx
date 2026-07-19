@@ -13,10 +13,12 @@ export const StatusBar: React.FC<StatusBarProps> = ({
     style={{
       display: 'flex',
       justifyContent: 'space-between',
-      padding: '6px 12px',
+      padding: '8px 16px',
       fontSize: 12,
       color: '#ffd54f',
-      borderBottom: '1px solid rgba(255, 213, 79, 0.2)'
+      background: 'rgba(0, 0, 0, 0.6)',
+      backdropFilter: 'blur(12px)',
+      borderBottom: '1px solid rgba(255, 213, 79, 0.25)'
     }}
   >
     <span>{time}</span>

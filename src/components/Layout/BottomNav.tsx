@@ -17,9 +17,9 @@ export const BottomNav: React.FC<BottomNavProps> = ({ active, onChange }) => {
   return (
     <div
       style={{
-        marginTop: 18,
+        marginTop: 20,
         paddingTop: 10,
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.12)',
         display: 'flex',
         justifyContent: 'space-around',
         fontSize: 12
@@ -32,19 +32,23 @@ export const BottomNav: React.FC<BottomNavProps> = ({ active, onChange }) => {
             key={tab.key}
             onClick={() => onChange(tab.key)}
             style={{
-              minWidth: 80,
-              padding: '6px 8px',
-              borderRadius: 12,
+              minWidth: 90,
+              padding: '8px 10px',
+              borderRadius: 16,
               border: 'none',
               outline: 'none',
               background: isActive
-                ? 'rgba(255, 152, 0, 0.2)'
-                : 'rgba(33, 33, 33, 0.9)',
+                ? 'rgba(255, 152, 0, 0.25)'
+                : 'rgba(0, 0, 0, 0.6)',
               color: isActive ? '#ffcc80' : '#ffffff',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: isActive
+                ? '0 0 18px rgba(255, 152, 0, 0.7)'
+                : 'none',
+              transition: 'transform 0.1s ease, box-shadow 0.2s ease'
             }}
           >
             <span style={{ fontSize: 16 }}>{tab.icon}</span>

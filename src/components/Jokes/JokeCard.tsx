@@ -6,14 +6,16 @@ export const JokeCard: React.FC<{ joke: ChuckJoke }> = ({ joke }) => (
     style={{
       marginTop: 20,
       padding: '20px 22px',
-      borderRadius: 20,
+      borderRadius: 22,
       background:
-        'linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))',
-      backdropFilter: 'blur(10px)',
-      boxShadow: '0 0 24px rgba(255, 152, 0, 0.3)',
+        'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(0,0,0,0.6))',
+      backdropFilter: 'blur(14px)',
+      boxShadow:
+        '0 0 30px rgba(255, 152, 0, 0.45), 0 0 80px rgba(0, 0, 0, 0.9)',
+      border: '1px solid rgba(255, 255, 255, 0.12)',
       fontSize: 16,
       lineHeight: 1.6,
-      color: '#fff'
+      color: '#ffffff'
     }}
   >
     <div style={{ fontSize: 26, color: '#ff9800', marginBottom: 8 }}>❝</div>
@@ -31,10 +33,10 @@ export const JokeCard: React.FC<{ joke: ChuckJoke }> = ({ joke }) => (
 
     <div
       style={{
-        marginTop: 10,
+        marginTop: 12,
         fontSize: 12,
         color: '#ffcc80',
-        borderTop: '1px solid rgba(255, 152, 0, 0.3)',
+        borderTop: '1px solid rgba(255, 152, 0, 0.4)',
         paddingTop: 6,
         display: 'flex',
         justifyContent: 'space-between'

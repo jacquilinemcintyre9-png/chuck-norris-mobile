@@ -83,7 +83,7 @@ export const JokesScreen: React.FC = () => {
     utter.pitch = 1.0;
 
     const voices = speechSynthesis.getVoices();
-    const russianVoice = voices.find(v => v.lang === 'ru-RU');
+    const russianVoice = voices.find((v) => v.lang === 'ru-RU');
     if (russianVoice) utter.voice = russianVoice;
 
     window.speechSynthesis.cancel();
@@ -96,7 +96,8 @@ export const JokesScreen: React.FC = () => {
     <div
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(180deg, #050608 0%, #121212 100%)',
+        background:
+          'radial-gradient(circle at top, #141922 0, #050608 55%, #000000 100%)',
         color: '#ffffff'
       }}
     >
