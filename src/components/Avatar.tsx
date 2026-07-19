@@ -5,8 +5,14 @@ const chuckImages = [
   "/assets/chuck2.jpg",
   "/assets/chuck3.jpg",
   "/assets/chuck4.jpg",
+  "/assets/chuck5.jpg",
+  "/assets/chuck6.jpg",
+  "/assets/chuck7.jpg",
+  "/assets/chuck8.jpg",
+  "/assets/chuck9.jpg",
+  "/assets/chuck10.jpg",
 ];
-
+;
 export function Avatar() {
   const [current, setCurrent] = useState(0);
   const [anim, setAnim] = useState(false);
