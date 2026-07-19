@@ -5,37 +5,36 @@ interface JokeCardProps {
   joke: ChuckJoke;
 }
 
-export const JokeCard: React.FC<JokeCardProps> = ({ joke }) => {
-  return (
-    <article
+export const JokeCard: React.FC<JokeCardProps> = ({ joke }) => (
+  <article
+    style={{
+      marginTop: 12,
+      padding: '16px 18px',
+      borderRadius: 18,
+      background: 'rgba(18, 18, 18, 0.95)',
+      boxShadow: '0 14px 32px rgba(0, 0, 0, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.06)',
+      fontSize: 15,
+      lineHeight: 1.6
+    }}
+  >
+    <div style={{ fontSize: 22, marginBottom: 8 }}>❝</div>
+    <p style={{ margin: 0 }}>{joke.value}</p>
+    <div style={{ fontSize: 22, marginTop: 8, textAlign: 'right' }}>❞</div>
+
+    <div
       style={{
-        background: '#121212',
-        borderRadius: 16,
-        padding: '16px 18px',
-        color: '#ffffff',
-        boxShadow: '0 12px 30px rgba(0, 0, 0, 0.6)',
-        fontSize: 16,
-        lineHeight: 1.5,
-        marginTop: 16
+        marginTop: 10,
+        fontSize: 11,
+        color: '#b0bec5',
+        borderTop: '1px solid rgba(176, 190, 197, 0.3)',
+        paddingTop: 6,
+        display: 'flex',
+        justifyContent: 'space-between'
       }}
     >
-      <p>{joke.value}</p>
-      {joke.categories?.[0] && (
-        <span
-          style={{
-            display: 'inline-block',
-            marginTop: 12,
-            padding: '4px 10px',
-            borderRadius: 999,
-            background: '#ff9800',
-            color: '#000',
-            fontSize: 12,
-            fontWeight: 600
-          }}
-        >
-          Категория: {joke.categories[0]}
-        </span>
-      )}
-    </article>
-  );
-};
+      <span>ФАКТ</span>
+      <span>#ЧАКНОРРИС</span>
+    </div>
+  </article>
+);
