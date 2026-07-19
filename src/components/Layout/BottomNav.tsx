@@ -10,8 +10,8 @@ interface BottomNavProps {
 export const BottomNav: React.FC<BottomNavProps> = ({ active, onChange }) => {
   const tabs: { key: TabKey; icon: string; label: string }[] = [
     { key: 'jokes', icon: '👊', label: 'Шутки' },
-    { key: 'categories', icon: '📂', label: 'Катег' },
-    { key: 'favorites', icon: '⭐', label: 'Избр' }
+    { key: 'categories', icon: '📂', label: 'Категории' },
+    { key: 'favorites', icon: '⭐', label: 'Избранное' }
   ];
 
   return (
@@ -19,7 +19,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ active, onChange }) => {
       style={{
         marginTop: 20,
         paddingTop: 10,
-        borderTop: '1px solid rgba(255, 255, 255, 0.12)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.14)',
         display: 'flex',
         justifyContent: 'space-around',
         fontSize: 12
@@ -38,15 +38,15 @@ export const BottomNav: React.FC<BottomNavProps> = ({ active, onChange }) => {
               border: 'none',
               outline: 'none',
               background: isActive
-                ? 'rgba(255, 152, 0, 0.25)'
-                : 'rgba(0, 0, 0, 0.6)',
+                ? 'rgba(255, 152, 0, 0.3)'
+                : 'rgba(0, 0, 0, 0.7)',
               color: isActive ? '#ffcc80' : '#ffffff',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               cursor: 'pointer',
               boxShadow: isActive
-                ? '0 0 18px rgba(255, 152, 0, 0.7)'
+                ? '0 0 20px rgba(255, 152, 0, 0.8)'
                 : 'none',
               transition: 'transform 0.1s ease, box-shadow 0.2s ease'
             }}

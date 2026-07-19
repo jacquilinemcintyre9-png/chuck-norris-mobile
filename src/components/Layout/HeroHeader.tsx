@@ -5,13 +5,14 @@ export const HeroHeader: React.FC = () => (
     <div
       style={{
         display: 'inline-block',
-        padding: '12px 20px',
-        borderRadius: 20,
-        border: '1px solid rgba(255, 213, 79, 0.6)',
-        boxShadow: '0 0 24px rgba(255, 213, 79, 0.5)',
+        padding: '12px 22px',
+        borderRadius: 22,
+        border: '1px solid rgba(255, 213, 79, 0.7)',
+        boxShadow:
+          '0 0 26px rgba(255, 213, 79, 0.7), 0 0 80px rgba(0, 0, 0, 0.9)',
         background:
-          'linear-gradient(145deg, rgba(255,255,255,0.06), rgba(0,0,0,0.6))',
-        backdropFilter: 'blur(14px)'
+          'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(0,0,0,0.7))',
+        backdropFilter: 'blur(16px)'
       }}
     >
       <div

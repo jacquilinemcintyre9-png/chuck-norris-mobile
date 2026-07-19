@@ -36,16 +36,16 @@ export const PrimaryActionBar: React.FC<PrimaryActionBarProps> = ({
           'linear-gradient(135deg, #ff6f00, #ff9800, #ffb74d)',
         color: '#000',
         boxShadow:
-          '0 0 40px rgba(255, 152, 0, 0.9), 0 0 80px rgba(255, 152, 0, 0.4)',
+          '0 0 40px rgba(255, 152, 0, 0.95), 0 0 90px rgba(255, 152, 0, 0.5)',
         transition: 'transform 0.15s ease, box-shadow 0.3s ease'
       }}
       onMouseEnter={(e) =>
         (e.currentTarget.style.boxShadow =
-          '0 0 60px rgba(255, 152, 0, 1), 0 0 100px rgba(255, 152, 0, 0.6)')
+          '0 0 60px rgba(255, 152, 0, 1), 0 0 110px rgba(255, 152, 0, 0.7)')
       }
       onMouseLeave={(e) =>
         (e.currentTarget.style.boxShadow =
-          '0 0 40px rgba(255, 152, 0, 0.9), 0 0 80px rgba(255, 152, 0, 0.4)')
+          '0 0 40px rgba(255, 152, 0, 0.95), 0 0 90px rgba(255, 152, 0, 0.5)')
       }
       onMouseDown={(e) => {
         e.currentTarget.style.transform = 'scale(0.95)';
@@ -88,8 +88,8 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, onClick }) => (
       outline: 'none',
       background: 'rgba(255, 255, 255, 0.06)',
       color: '#ffb74d',
-      backdropFilter: 'blur(12px)',
-      boxShadow: '0 0 22px rgba(255, 183, 77, 0.7)',
+      backdropFilter: 'blur(14px)',
+      boxShadow: '0 0 24px rgba(255, 183, 77, 0.8)',
       cursor: 'pointer',
       display: 'flex',
       alignItems: 'center',
@@ -99,13 +99,13 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, onClick }) => (
     onMouseDown={(e) => {
       e.currentTarget.style.transform = 'scale(0.9)';
       e.currentTarget.style.boxShadow =
-        '0 0 12px rgba(255, 183, 77, 0.9)';
+        '0 0 14px rgba(255, 183, 77, 1)';
       if (navigator.vibrate) navigator.vibrate(8);
     }}
     onMouseUp={(e) => {
       e.currentTarget.style.transform = 'scale(1)';
       e.currentTarget.style.boxShadow =
-        '0 0 22px rgba(255, 183, 77, 0.7)';
+        '0 0 24px rgba(255, 183, 77, 0.8)';
     }}
   >
     {icon}

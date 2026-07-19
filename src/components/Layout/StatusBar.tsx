@@ -16,8 +16,8 @@ export const StatusBar: React.FC<StatusBarProps> = ({
       padding: '8px 16px',
       fontSize: 12,
       color: '#ffd54f',
-      background: 'rgba(0, 0, 0, 0.6)',
-      backdropFilter: 'blur(12px)',
+      background: 'rgba(0, 0, 0, 0.7)',
+      backdropFilter: 'blur(14px)',
       borderBottom: '1px solid rgba(255, 213, 79, 0.25)'
     }}
   >

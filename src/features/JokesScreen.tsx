@@ -97,7 +97,7 @@ export const JokesScreen: React.FC = () => {
       style={{
         minHeight: '100vh',
         background:
-          'radial-gradient(circle at top, #141922 0, #050608 55%, #000000 100%)',
+          'radial-gradient(circle at 10% 0%, #1b2433 0, #050608 45%, #000000 100%)',
         color: '#ffffff'
       }}
     >
